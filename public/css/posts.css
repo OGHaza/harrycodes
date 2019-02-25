@@ -1,0 +1,61 @@
+body {
+    background-color: #fff;
+    padding-top: 10px;
+}
+header {
+    min-height: 100px;
+    background: #fff;
+    padding: 15px;
+    margin-bottom: 0px;
+}
+
+.footer-content {
+    padding-top: 10px;
+}
+
+.content {
+    background: #fff;
+    padding: 0 20px 20px 20px;
+    margin-bottom: 10px;
+}
+
+.post {
+    margin: 15px 0 45px 0;
+}
+
+.post .post-header {
+    margin-bottom: 15px;
+}
+
+.post .post-header .post-title {
+    font-size: 20pt;
+    font-weight: bold;
+    line-height: 27pt;
+}
+
+.post .post-header .post-subtitle {
+    font-size: 14pt;
+    line-height: 18pt;
+}
+
+.post .post-header .post-author {
+    font-size: 10pt;
+    font-color: #eee;
+    font-style: oblique;
+    line-height: 20pt;
+}
+
+.post .post-header .post-title, .post .post-header .post-subtitle {
+    font-family: 'Quattrocento', serif;
+}
+
+.post a {
+    text-decoration:none;
+    color: #000;
+}
+
+.post pre code {
+    padding: 10px 20px;
+    margin: 0 20px;
+    display: block;
+}
