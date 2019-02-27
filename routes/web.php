@@ -20,4 +20,6 @@ Route::get('/posts/{post}', 'PostController@show')->name('posts.show');
 Route::get('/posts/{post}/edit', 'PostController@edit')->name('posts.edit');
 Route::put('/posts/{post}/update', 'PostController@update')->name('posts.update');
 
+Route::put('/comments/{comment}', 'CommentController@store')->name('comments.store');
+
 Route::get('/home', 'HomeController@index')->name('home');

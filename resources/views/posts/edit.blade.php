@@ -11,6 +11,9 @@
 			<input type="text" class="form-control" name="subtitle" placeholder="Subtitle" value="{{ $post->subtitle }}">
 		</div>
 		<div class="form-group">
+			<input type="text" class="form-control" name="tags_flat" placeholder="tags_flat" value="{{ $post->tags_flat }}">
+		</div>
+		<div class="form-group">
 			<textarea class="form-control" name="content" rows="12">{{ $post->content }}</textarea>
 		</div>
 		<button type="submit" class="btn btn-primary">Update</button>

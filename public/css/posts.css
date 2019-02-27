@@ -33,7 +33,7 @@ header {
     line-height: 27pt;
 }
 
-.post .post-header .post-subtitle {
+.post-subtitle {
     font-size: 14pt;
     line-height: 18pt;
 }
@@ -45,7 +45,7 @@ header {
     line-height: 20pt;
 }
 
-.post .post-header .post-title, .post .post-header .post-subtitle {
+.post-title, .post-subtitle {
     font-family: 'Quattrocento', serif;
 }
 
@@ -58,4 +58,21 @@ header {
     padding: 10px 20px;
     margin: 0 20px;
     display: block;
+}
+
+.post .post-tag {
+    border: 1px solid #000;
+    margin: 2px;
+    padding: 0 4px;
+}
+
+.comment {
+    margin: 5px 0 25px 0;
+}
+.comment .comment-header {
+    font-weight: bold;
+        font-family: 'Quattrocento', serif;
+}
+.comment .comment-text {
+
 }

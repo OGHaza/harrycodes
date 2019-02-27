@@ -20,14 +20,8 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('secret'),
         ]);
 
-        $faker = Faker::create();
-
-        for ($i = 0; $i < 5; $i++) {
-            DB::table('users')->insert([
-                'name' => $faker->name,
-                'email' => $faker->email,
-                'password' => bcrypt('secret'),
-            ]);
-        }
+        factory(App\User::class, 50)->create()->each(function ($user) {
+            $user->posts()->save(factory(App\Post::class)->make());
+        });
     }
 }

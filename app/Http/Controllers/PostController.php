@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\PostTag;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -15,7 +16,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all()->sortByDesc('created_at');
-         return view('posts.index', ['posts' => $posts]);
+        return view('posts.index', ['posts' => $posts]);
     }
 
     /**
@@ -25,7 +26,7 @@ class PostController extends Controller
      */
     public function create()
     {
-         return view('posts.create');
+        return view('posts.create');
     }
 
     /**
@@ -61,7 +62,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-         return view('posts.show', ['post' => $post]);
+        return view('posts.show', ['post' => $post]);
     }
 
     /**
@@ -72,7 +73,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-         return view('posts.edit', ['post' => $post]);
+        $post->tags_flat = implode(', ', $post->tags->pluck('tag')->toArray());
+        return view('posts.edit', ['post' => $post]);
     }
 
     /**
@@ -95,6 +97,28 @@ class PostController extends Controller
         $post->content = $request->get('content');
 
         $post->save();
+
+        $tags = $request->get('tags_flat');
+        if ($tags) {
+            $tags = array_unique(array_map('trim', explode(',', $tags)));
+            $tags_old = $post->tags->pluck('tag')->toArray();
+
+            foreach ($tags as $tag) {
+                if (!in_array($tag, $tags_old)) {
+                    $pt = new PostTag([
+                        'post_id' => $post->id,
+                        'tag'=> trim($tag),
+                    ]);
+                    $pt->save();
+                }
+            }
+
+            foreach ($tags_old as $old) {
+                if (!in_array($old, $tags)) {
+                    PostTag::where('post_id', $post->id)->where('tag', $old)->delete();
+                }
+            }
+        }
 
         return redirect()->route('posts.show', ['post' => $post]);;
     }
